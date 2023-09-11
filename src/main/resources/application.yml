@@ -1,0 +1,32 @@
+spring:
+  application.name: accounts-service
+  profiles.active: local-insecure
+  cloud:
+    config:
+      # Properties used when spring.cloud.config.enabled is true
+      enabled: false
+      failFast: true
+      retry:
+        initialInterval: 6000
+        multiplier: 1.5
+        maxInterval: 30000
+      uri: http://config-service:8080
+      name: ${spring.application.name}
+      label: master
+      profile: ${spring.profiles.active}
+  config:
+    # Properties used in LOCAL environment, when spring.cloud.config.enabled is false
+    name: ${spring.application.name}
+
+    
+#---------------------------------------
+# Logger configs
+#---------------------------------------
+logging:
+  level: 
+    com.gdav.training: DEBUG
+#---------------------------------------
+# Personalized configs
+#---------------------------------------
+accounts-service:
+  config: test
